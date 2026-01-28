@@ -1,0 +1,371 @@
+:root {
+    --text-main: #ffffff;
+    --text-header: #000000;
+    --bg-outer: #0a0a0a;
+    --bg-header: #ffffff;
+    --font-main: 'Inter', sans-serif;
+    --radius-outer: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-outer);
+    font-family: var(--font-main);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    /* Space around the 'window' */
+    overflow: hidden;
+}
+
+.app-container {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    max-width: 1600px;
+    /* Optional max width */
+    max-height: 900px;
+    /* Force visual consistency on huge screens */
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-outer);
+    overflow: hidden;
+    /* Clips the canvas corners */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+}
+
+/* Header - White Bar */
+header {
+    background-color: var(--bg-header);
+    color: var(--text-header);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.03em;
+}
+
+nav {
+    display: flex;
+    gap: 5rem;
+}
+
+nav a {
+    color: var(--text-header);
+    text-decoration: none;
+    opacity: 1;
+    font-weight: 600;
+    position: relative;
+    transition: opacity 0.2s;
+}
+
+nav a:hover {
+    opacity: 0.6;
+}
+
+nav a sup {
+    font-size: 0.6em;
+    margin-left: 2px;
+    vertical-align: top;
+    color: #999;
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    width: 24px;
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-header);
+}
+
+/* Content Area - Dark & Smoky */
+.content-area {
+    flex: 1;
+    position: relative;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transform: translateY(-20px);
+}
+
+.hero h1 {
+    font-size: 13rem;
+    /* Fixed big size for desktop */
+    line-height: 0.8;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    margin: 0;
+    background: linear-gradient(180deg, #fff 0%, #ccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tm {
+    font-size: 0.15em;
+    vertical-align: super;
+    margin-left: 10px;
+    -webkit-text-fill-color: #fff;
+    /* Reset gradient for TM */
+}
+
+.subtitle {
+    display: block;
+    text-align: right;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-top: 0;
+    margin-right: 2rem;
+}
+
+/* Services */
+.services-list {
+    position: absolute;
+    right: 5rem;
+    top: 45%;
+    transform: translateY(-50%);
+    text-align: left;
+    z-index: 1;
+}
+
+.services-list ul {
+    list-style: none;
+}
+
+.services-list li {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* Bottom UI */
+.bottom-ui {
+    width: 100%;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 3rem;
+    z-index: 1;
+}
+
+.intro-text p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 400px;
+}
+
+.copyright {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+}
+
+/* Team Card */
+.team-card {
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+    padding: 1.2rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-image img {
+    width: 60px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.role {
+    font-size: 0.65rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: -2px;
+}
+
+.at {
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.talk-btn {
+    margin-top: 0.5rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.talk-btn .dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* Crosshairs */
+.crosshair {
+    position: absolute;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.c-1 {
+    top: 40%;
+    left: 15%;
+}
+
+.c-2 {
+    top: 40%;
+    left: 45%;
+}
+
+.c-3 {
+    top: 40%;
+    right: 45%;
+}
+
+.c-4 {
+    top: 40%;
+    right: 25%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 15vw;
+    }
+
+    .app-container {
+        height: 100%;
+        max-height: none;
+        padding: 0;
+        width: 100vw;
+        border-radius: 0;
+    }
+
+    body {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 18vw;
+    }
+
+    .subtitle {
+        font-size: 4vw;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .services-list {
+        display: none;
+    }
+
+    .bottom-ui {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 1rem;
+        bottom: 1rem;
+    }
+
+    .team-card {
+        width: 100%;
+    }
+
+    .copyright {
+        display: none;
+    }
+
+    .crosshair {
+        display: none;
+    }
+}
